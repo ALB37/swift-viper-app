@@ -20,8 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iiD-PL-pl9">
-                                <rect key="frame" x="20" y="40" width="374" height="424.33333333333331"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iiD-PL-pl9">
+                                <rect key="frame" x="20" y="40" width="374" height="542"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picture Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdC-qG-FV2">
                                         <rect key="frame" x="0.0" y="0.0" width="103.33333333333333" height="20.333333333333332"/>
@@ -29,7 +29,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Meal Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N3c-B9-tBk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Meal Name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N3c-B9-tBk">
                                         <rect key="frame" x="0.0" y="28.333333333333329" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -42,7 +42,7 @@
                                             <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tIN-Bf-9yG"/>
                                         </connections>
                                     </button>
-                                    <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="Image.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Qvx-4j-hYH">
+                                    <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="Image.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Qvx-4j-hYH">
                                         <rect key="frame" x="0.0" y="104.33333333333337" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -54,6 +54,9 @@
                                             <outletCollection property="gestureRecognizers" destination="8wj-f2-gJl" appends="YES" id="LUv-bC-RbG"/>
                                         </connections>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JXJ-GM-Nll" customClass="RatingControl" customModule="swift_mvc_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="432.33333333333331" width="200" height="109.66666666666669"/>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="N3c-B9-tBk" secondAttribute="trailing" id="b1k-WP-Gjf"/>
