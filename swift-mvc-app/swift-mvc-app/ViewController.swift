@@ -44,6 +44,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         }
         
         photoImageView.image = selectedImage
+        photoImageView.contentMode = .scaleAspectFit
         dismiss(animated: true, completion: nil)
     }
     
