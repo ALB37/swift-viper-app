@@ -24,6 +24,14 @@ class PhotoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
         super.viewDidLoad()
         nameTextField.delegate = self
         
+        if let pic = picture {
+            navigationItem.title = pic.name
+            nameTextField.text = pic.name
+            photoImageView.image = pic.photo
+            ratingControl.rating = pic.rating
+            
+        }
+        
         updateSaveButtonState()
     }
     
@@ -62,7 +70,15 @@ class PhotoViewController: UIViewController, UITextFieldDelegate, UIImagePickerC
     // MARK: Navigation
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        let isPresentingInAddPhotoMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddPhotoMode {
+            dismiss(animated: true, completion: nil)
+        } else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        } else {
+            fatalError("The PhotoViewController is not inside a navigation controller")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
