@@ -103,6 +103,15 @@ class PhotoTableViewController: UITableViewController {
     }
     */
     
+    // MARK: Actions
+    @IBAction func unwindToPhotoList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? PhotoViewController, let picture = sourceViewController.picture {
+            let newIndexPath = IndexPath(row: photos.count, section: 0)
+            photos.append(picture)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+    
     // MARK: Private Methods
     
     private func loadSamplePhotos() {
