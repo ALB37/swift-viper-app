@@ -21,7 +21,11 @@ class PhotoTableViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = editButtonItem
         
-        loadSamplePhotos()
+        if let savedPhotos = loadPhotos() {
+            photos += savedPhotos
+        } else {
+            loadSamplePhotos()
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -73,6 +77,7 @@ class PhotoTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             photos.remove(at: indexPath.row)
+            savePhotos()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -134,6 +139,8 @@ class PhotoTableViewController: UITableViewController {
                 photos.append(picture)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            
+            savePhotos()
         }
     }
     
@@ -155,5 +162,19 @@ class PhotoTableViewController: UITableViewController {
         }
         
         photos += [photo1, photo2, photo3]
+    }
+    
+    private func savePhotos() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(photos, toFile: Photo.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Photos successfully saved", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save photos", log: OSLog.default, type: .debug)
+        }
+    }
+    
+    private func loadPhotos() -> [Photo]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Photo.ArchiveURL.path) as? [Photo]
     }
 }
